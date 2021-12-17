@@ -23,8 +23,10 @@ def take_command():
     return command
 
 
-def talk(sentense: str):
-    engine.say(sentense)
+def talk(line: str, printAlso: bool = False):
+    if printAlso:
+        print(line)
+    engine.say(line)
     engine.runAndWait()
 
 
@@ -48,16 +50,17 @@ def processTheCommandInput(command: str):
         cm = command.replace("search about", "")
         talk("Searching")
         searchOnWikipedia(cm)
-        
+
     elif "joke" in command:
         jk = pyjokes.get_joke()
         print(jk)
         talk(jk)
 
+
 def main():
-    # talk("Initializing Your Voice Assistant. Please Wait")
-    command = take_command()
-    processTheCommandInput(command=command)
+    talk("Initializing Your Voice Assistant. Please Wait",printAlso=True)
+    # command = take_command()
+    # processTheCommandInput(command=command)
     # searchOnWikipedia('Elon Musk')
 
 
