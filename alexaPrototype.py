@@ -3,6 +3,7 @@ import speech_recognition as sr
 import pyttsx3
 import wikipedia
 import pywhatkit
+import pyjokes
 
 listener = sr.Recognizer()
 engine = pyttsx3.init()
@@ -33,7 +34,7 @@ def playOnYouTube(search: str):
 
 def searchOnWikipedia(search: str):
     print(search)
-    info = wikipedia.summary(search, 1)
+    info = wikipedia.summary(search)
     print(info)
 
 
@@ -47,7 +48,11 @@ def processTheCommandInput(command: str):
         cm = command.replace("search about", "")
         talk("Searching")
         searchOnWikipedia(cm)
-
+        
+    elif "joke" in command:
+        jk = pyjokes.get_joke()
+        print(jk)
+        talk(jk)
 
 def main():
     # talk("Initializing Your Voice Assistant. Please Wait")
